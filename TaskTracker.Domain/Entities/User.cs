@@ -13,11 +13,6 @@ namespace TaskTracker.Domain.Entities
         public string Username { get; set; } = string.Empty;
 
         /// <summary>
-        /// Email adresi (benzersiz)
-        /// </summary>
-        public string Email { get; set; } = string.Empty;
-
-        /// <summary>
         /// Şifre hash'i
         /// </summary>
         public string PasswordHash { get; set; } = string.Empty;

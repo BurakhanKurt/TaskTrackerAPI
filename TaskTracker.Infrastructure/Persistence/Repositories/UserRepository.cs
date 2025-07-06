@@ -26,22 +26,10 @@ namespace TaskTracker.Infrastructure.Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Username == username, cancellationToken);
         }
 
-        public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
-        {
-            return await GetQueryable<User>()
-                .FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
-        }
-
         public async Task<bool> ExistsByUsernameAsync(string username, CancellationToken cancellationToken = default)
         {
             return await GetQueryable<User>()
                 .AnyAsync(x => x.Username == username, cancellationToken);
-        }
-
-        public async Task<bool> ExistsByEmailAsync(string email, CancellationToken cancellationToken = default)
-        {
-            return await GetQueryable<User>()
-                .AnyAsync(x => x.Email == email, cancellationToken);
         }
 
         public async Task<User> CreateAsync(User user, CancellationToken cancellationToken = default)

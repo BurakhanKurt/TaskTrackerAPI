@@ -14,12 +14,6 @@ namespace TaskTracker.Application.Services.Auth.Validators
                 .Matches("^[a-zA-Z0-9_]+$").WithMessage("Kullanıcı adı sadece harf, rakam ve alt çizgi içerebilir")
                 .Matches("^[a-zA-Z]").WithMessage("Kullanıcı adı harf ile başlamalıdır");
 
-            RuleFor(x => x.Email)
-                .NotEmpty().WithMessage("Email adresi zorunludur")
-                .EmailAddress().WithMessage("Geçerli bir email adresi giriniz")
-                .MaximumLength(100).WithMessage("Email adresi en fazla 100 karakter olabilir")
-                .Matches(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$").WithMessage("Geçerli bir email formatı giriniz");
-
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Şifre zorunludur")
                 .MinimumLength(8).WithMessage("Şifre en az 8 karakter olmalıdır")

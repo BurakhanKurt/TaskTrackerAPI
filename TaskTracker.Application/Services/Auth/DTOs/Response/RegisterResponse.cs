@@ -4,6 +4,5 @@ namespace TaskTracker.Application.Services.Auth.DTOs.Response
     {
         public int Id { get; set; }
         public string? Username { get; set; }
-        public string? Email { get; set; }
     }
 } 

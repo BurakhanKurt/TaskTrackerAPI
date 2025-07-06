@@ -11,7 +11,6 @@ namespace TaskTracker.Application.Services.Auth.Handlers.Commands
     public class RegisterUserCommand : IRequest<Response<int>>
     {
         public string Username { get; set; } = null!;
-        public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
     }
 
@@ -37,15 +36,14 @@ namespace TaskTracker.Application.Services.Auth.Handlers.Commands
 
         public async Task<Response<int>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
-            var exists = await _unitOfWork.UserRepository.ExistsByEmailAsync(request.Email, cancellationToken);
+            var exists = await _unitOfWork.UserRepository.ExistsByUsernameAsync(request.Username, cancellationToken);
             if (exists)
-                throw new BadRequestException("Bu email adresi zaten kullanılıyor");
+                throw new BadRequestException("Bu kullanıcı adı zaten kullanılıyor");
 
             var (passwordHash, passwordSalt) = _passwordService.HashPassword(request.Password);
             var user = new User
             {
                 Username = request.Username,
-                Email = request.Email,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt
             };

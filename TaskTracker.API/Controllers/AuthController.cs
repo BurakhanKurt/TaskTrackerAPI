@@ -14,10 +14,10 @@ namespace TaskTracker.API.Controllers
         /// <summary>
         /// Yeni kullanıcı kaydı oluşturur
         /// </summary>
-        /// <param name="command">Kullanıcı bilgileri (Username, Email, Password)</param>
+        /// <param name="command">Kullanıcı bilgileri (Username, Password)</param>
         /// <returns>Kayıt işlemi başarılı</returns>
         /// <response code="200">Kullanıcı başarıyla kaydedildi</response>
-        /// <response code="400">Geçersiz veri veya kullanıcı adı/email zaten mevcut</response>
+        /// <response code="400">Geçersiz veri veya kullanıcı adı zaten mevcut</response>
         /// <response code="429">Rate limit aşıldı</response>
         [HttpPost("register")]
         [EnableRateLimiting("auth")]
@@ -33,10 +33,10 @@ namespace TaskTracker.API.Controllers
         /// <summary>
         /// Kullanıcı girişi yapar ve JWT token döner
         /// </summary>
-        /// <param name="command">Giriş bilgileri (Email, Password)</param>
+        /// <param name="command">Giriş bilgileri (Username, Password)</param>
         /// <returns>JWT token</returns>
         /// <response code="200">Giriş başarılı, token döner</response>
-        /// <response code="400">Geçersiz email veya şifre</response>
+        /// <response code="400">Geçersiz kullanıcı adı veya şifre</response>
         /// <response code="429">Rate limit aşıldı</response>
         [HttpPost("login")]
         [EnableRateLimiting("auth")]

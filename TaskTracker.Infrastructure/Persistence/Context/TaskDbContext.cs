@@ -24,13 +24,11 @@ namespace TaskTracker.Infrastructure.Persistence.Context
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Username).IsRequired().HasMaxLength(50);
-                entity.Property(e => e.Email).IsRequired().HasMaxLength(100);
                 entity.Property(e => e.PasswordHash).IsRequired().HasMaxLength(255);
                 entity.Property(e => e.PasswordSalt).IsRequired().HasMaxLength(255);
 
                 // Unique constraints
                 entity.HasIndex(e => e.Username).IsUnique();
-                entity.HasIndex(e => e.Email).IsUnique();
             });
 
             // TaskItem konfigürasyonu

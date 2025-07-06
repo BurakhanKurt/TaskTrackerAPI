@@ -8,7 +8,7 @@ namespace TaskTracker.Application.Services.Auth.Handlers.Commands
 {
     public class LoginUserCommand : IRequest<Response<LoginResponse>>
     {
-        public string Email { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
     }
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, Response<LoginResponse>>
@@ -30,7 +30,7 @@ namespace TaskTracker.Application.Services.Auth.Handlers.Commands
             
             try
             {
-                var user = await _unitOfWork.UserRepository.GetByEmailAsync(request.Email, cancellationToken);
+                var user = await _unitOfWork.UserRepository.GetByUsernameAsync(request.Username, cancellationToken);
                 if (user == null)
                 {
                     return Response<LoginResponse>.Fail("Kullanıcı bulunamadı.", 400);
@@ -46,8 +46,7 @@ namespace TaskTracker.Application.Services.Auth.Handlers.Commands
                 var response = new LoginResponse
                 {
                     Token = token,
-                    Username = user.Username,
-                    Email = user.Email
+                    Username = user.Username
                 };
 
                 //await _unitOfWork.CommitTransactionAsync(cancellationToken);
