@@ -14,8 +14,7 @@ namespace TaskTracker.Application.Services.Tasks.Handlers.Queries
         public int PageSize { get; set; } = 10;
         public TaskStatusFilter? StatusFilter { get; set; }
         public string? SearchTerm { get; set; }
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public DateOnly? DueDate { get; set; }
     }
     
     public class GetTasksQueryHandler : IRequestHandler<GetTasksQuery, Response<GetTasksResponse>>
@@ -59,8 +58,7 @@ namespace TaskTracker.Application.Services.Tasks.Handlers.Queries
                 request.PageSize, 
                 isCompleted,
                 request.SearchTerm,
-                request.StartDate,
-                request.EndDate,
+                request.DueDate,
                 cancellationToken);
 
             // Filtrelenmiş toplam sayıyı al (tüm)
@@ -68,8 +66,7 @@ namespace TaskTracker.Application.Services.Tasks.Handlers.Queries
                 currentUserId,
                 isCompleted,
                 request.SearchTerm,
-                request.StartDate,
-                request.EndDate,
+                request.DueDate,
                 cancellationToken);
 
             // Genel istatistikler (filtreleme olmadan)

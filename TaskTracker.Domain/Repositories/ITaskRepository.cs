@@ -19,16 +19,14 @@ namespace TaskTracker.Domain.Repositories
             int pageSize, 
             bool? isCompleted = null,
             string? searchTerm = null,
-            DateTime? startDate = null,
-            DateTime? endDate = null,
+            DateOnly? dueDate = null,
             CancellationToken cancellationToken = default);
             
         Task<int> GetFilteredTasksCountAsync(
             int userId,
             bool? isCompleted = null,
             string? searchTerm = null,
-            DateTime? startDate = null,
-            DateTime? endDate = null,
+            DateOnly? dueDate = null,
             CancellationToken cancellationToken = default);
     }
 } 

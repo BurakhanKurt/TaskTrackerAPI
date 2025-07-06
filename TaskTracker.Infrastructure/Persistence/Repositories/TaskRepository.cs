@@ -66,8 +66,7 @@ namespace TaskTracker.Infrastructure.Persistence.Repositories
             int pageSize, 
             bool? isCompleted = null,
             string? searchTerm = null,
-            DateTime? startDate = null,
-            DateTime? endDate = null,
+            DateOnly? dueDate = null,
             CancellationToken cancellationToken = default)
         {
             var query = GetQueryable<TaskItem>().Where(x => x.UserId == userId);
@@ -81,13 +80,10 @@ namespace TaskTracker.Infrastructure.Persistence.Repositories
                 var normalizedSearchTerm = searchTerm.ToLower().Replace(" ", "");
                 query = query.Where(x => x.NormalizedTitle != null && x.NormalizedTitle.Contains(normalizedSearchTerm));
             }
-            if (startDate.HasValue)
+            if (dueDate.HasValue)
             {
-                query = query.Where(x => x.CreatedAt.Date >= startDate.Value.Date);
-            }
-            if (endDate.HasValue)
-            {
-                query = query.Where(x => x.CreatedAt.Date <= endDate.Value.Date);
+                var searchDate = dueDate.Value.ToDateTime(new TimeOnly(0, 0));
+                query = query.Where(x => x.DueDate.HasValue && x.DueDate.Value.Date == searchDate.Date);
             }
 
             var tasks = await query
@@ -103,8 +99,7 @@ namespace TaskTracker.Infrastructure.Persistence.Repositories
             int userId,
             bool? isCompleted = null,
             string? searchTerm = null,
-            DateTime? startDate = null,
-            DateTime? endDate = null,
+            DateOnly? dueDate = null,
             CancellationToken cancellationToken = default)
         {
             var query = GetQueryable<TaskItem>().Where(x => x.UserId == userId);
@@ -117,13 +112,10 @@ namespace TaskTracker.Infrastructure.Persistence.Repositories
             {
                 query = query.Where(x => x.Title.Contains(searchTerm));
             }
-            if (startDate.HasValue)
+            if (dueDate.HasValue)
             {
-                query = query.Where(x => x.CreatedAt.Date >= startDate.Value.Date);
-            }
-            if (endDate.HasValue)
-            {
-                query = query.Where(x => x.CreatedAt.Date <= endDate.Value.Date);
+                var searchDate = dueDate.Value.ToDateTime(new TimeOnly(0, 0));
+                query = query.Where(x => x.DueDate.HasValue && x.DueDate.Value.Date == searchDate.Date);
             }
 
             return await query.CountAsync(cancellationToken);

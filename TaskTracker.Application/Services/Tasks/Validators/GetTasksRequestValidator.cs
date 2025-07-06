@@ -18,14 +18,6 @@ namespace TaskTracker.Application.Services.Tasks.Validators
             RuleFor(x => x.SearchTerm)
                 .MaximumLength(100).WithMessage("Arama terimi en fazla 100 karakter olabilir")
                 .When(x => !string.IsNullOrEmpty(x.SearchTerm));
-
-            RuleFor(x => x.StartDate)
-                .LessThanOrEqualTo(x => x.EndDate).WithMessage("Başlangıç tarihi bitiş tarihinden büyük olamaz")
-                .When(x => x.StartDate.HasValue && x.EndDate.HasValue);
-
-            RuleFor(x => x.EndDate)
-                .GreaterThanOrEqualTo(x => x.StartDate).WithMessage("Bitiş tarihi başlangıç tarihinden küçük olamaz")
-                .When(x => x.StartDate.HasValue && x.EndDate.HasValue);
         }
     }
 } 

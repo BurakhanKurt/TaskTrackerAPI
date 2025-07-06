@@ -8,8 +8,7 @@ namespace TaskTracker.Application.Services.Tasks.DTOs.Request
         // Filtreleme parametreleri
         public TaskStatusFilter? StatusFilter { get; set; }
         public string? SearchTerm { get; set; }
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public DateOnly? DueDate { get; set; }
     }
 
     public enum TaskStatusFilter

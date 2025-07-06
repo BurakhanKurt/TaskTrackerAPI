@@ -22,8 +22,7 @@ namespace TaskTracker.API.Controllers
         /// <param name="pageSize">Sayfa başına görev sayısı (varsayılan: 10)</param>
         /// <param name="statusFilter">Durum filtresi (0: Tümü, 1: Tamamlanan, 2: Bekleyen)</param>
         /// <param name="searchTerm">Başlık arama terimi</param>
-        /// <param name="startDate">Başlangıç tarihi (YYYY-MM-DD)</param>
-        /// <param name="endDate">Bitiş tarihi (YYYY-MM-DD)</param>
+        /// <param name="dueDate">Bitiş tarihine göre filtreleme (YYYY-MM-DD)</param>
         /// <returns>Görev listesi ve toplam sayı</returns>
         /// <response code="200">Görevler başarıyla getirildi</response>
         /// <response code="401">Yetkilendirme gerekli</response>
@@ -37,8 +36,7 @@ namespace TaskTracker.API.Controllers
             [FromQuery] int pageSize = 10,
             [FromQuery] TaskStatusFilter? statusFilter = null,
             [FromQuery] string? searchTerm = null,
-            [FromQuery] DateTime? startDate = null,
-            [FromQuery] DateTime? endDate = null)
+            [FromQuery] DateOnly? dueDate = null)
         {
             var query = new GetTasksQuery
             {
@@ -46,8 +44,7 @@ namespace TaskTracker.API.Controllers
                 PageSize = pageSize,
                 StatusFilter = statusFilter,
                 SearchTerm = searchTerm,
-                StartDate = startDate,
-                EndDate = endDate
+                DueDate = dueDate
             };
             
             var result = await _mediator.Send(query);
