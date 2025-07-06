@@ -11,9 +11,6 @@ namespace TaskTracker.Application.Services.Tasks.Validators
                 .GreaterThan(0)
                 .WithMessage("Geçerli bir görev ID'si giriniz");
 
-            RuleFor(x => x.DueDate)
-                .Must(dueDate => !dueDate.HasValue || dueDate.Value > DateTime.UtcNow)
-                .WithMessage("Bitiş tarihi gelecek bir tarih olmalıdır");
         }
     }
 } 
