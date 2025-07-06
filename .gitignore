@@ -543,7 +543,6 @@ temp/
 *.suo
 *.ntvs*
 *.njsproj
-*.sln
 *.sw?
 
 # OS generated files
