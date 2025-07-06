@@ -41,9 +41,6 @@ namespace TaskTracker.Application.Services.Auth.Handlers.Commands
                     return Response<LoginResponse>.Fail("Şifre hatalı.", 400);
                 }
 
-                // Son giriş tarihini güncelle
-                await _unitOfWork.UserRepository.UpdateLastLoginAsync(user.Id, cancellationToken);
-
                 var token = _jwtService.GenerateToken(user);
 
                 var response = new LoginResponse

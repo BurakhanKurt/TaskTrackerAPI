@@ -78,17 +78,5 @@ namespace TaskTracker.Infrastructure.Persistence.Repositories
             _context.Users.Remove(user);
             await SaveChangesAsync(cancellationToken);
         }
-
-        public async Task UpdateLastLoginAsync(int userId, CancellationToken cancellationToken = default)
-        {
-            var user = await GetQueryable<User>(asNoTracking: false)
-                .FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
-
-            if (user != null)
-            {
-                user.LastLoginAt = DateTime.UtcNow;
-                await SaveChangesAsync(cancellationToken);
-            }
-        }
     }
 } 

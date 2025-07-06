@@ -13,9 +13,6 @@ namespace TaskTracker.Application.Services.Auth.Handlers.Commands
         public string Username { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public string? PhoneNumber { get; set; }
     }
 
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Response<int>>
@@ -50,10 +47,7 @@ namespace TaskTracker.Application.Services.Auth.Handlers.Commands
                 Username = request.Username,
                 Email = request.Email,
                 PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt,
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                PhoneNumber = request.PhoneNumber
+                PasswordSalt = passwordSalt
             };
 
             await _unitOfWork.UserRepository.CreateAsync(user, cancellationToken);

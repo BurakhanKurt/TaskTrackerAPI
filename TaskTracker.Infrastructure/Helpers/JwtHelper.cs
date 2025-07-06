@@ -38,8 +38,7 @@ namespace TaskTracker.Infrastructure.Helpers
                 { 
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new Claim(ClaimTypes.Name, user.Username),
-                    new Claim(ClaimTypes.Email, user.Email ?? ""),
-                    new Claim("FullName", user.FullName ?? "")
+                    new Claim(ClaimTypes.Email, user.Email ?? "")
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpirationInMinutes),
                 Issuer = _jwtSettings.Issuer,

@@ -27,9 +27,6 @@ namespace TaskTracker.Infrastructure.Persistence.Context
                 entity.Property(e => e.Email).IsRequired().HasMaxLength(100);
                 entity.Property(e => e.PasswordHash).IsRequired().HasMaxLength(255);
                 entity.Property(e => e.PasswordSalt).IsRequired().HasMaxLength(255);
-                entity.Property(e => e.FirstName).HasMaxLength(50);
-                entity.Property(e => e.LastName).HasMaxLength(50);
-                entity.Property(e => e.PhoneNumber).HasMaxLength(20);
 
                 // Unique constraints
                 entity.HasIndex(e => e.Username).IsUnique();

@@ -25,22 +25,6 @@ namespace TaskTracker.Application.Services.Auth.Validators
                 .MinimumLength(8).WithMessage("Şifre en az 8 karakter olmalıdır")
                 .MaximumLength(100).WithMessage("Şifre en fazla 100 karakter olabilir")
                 .Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&._-])[A-Za-z\d@$!%*?&._-]+").WithMessage("Şifre en az bir büyük harf, bir küçük harf, bir rakam ve bir özel karakter içermelidir");
-
-            RuleFor(x => x.FirstName)
-                .MaximumLength(50).WithMessage("Ad en fazla 50 karakter olabilir")
-                .Matches(@"^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]+$").WithMessage("Ad sadece harf ve boşluk içerebilir")
-                .When(x => !string.IsNullOrEmpty(x.FirstName));
-
-            RuleFor(x => x.LastName)
-                .MaximumLength(50).WithMessage("Soyad en fazla 50 karakter olabilir")
-                .Matches(@"^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]+$").WithMessage("Soyad sadece harf ve boşluk içerebilir")
-                .When(x => !string.IsNullOrEmpty(x.LastName));
-
-            RuleFor(x => x.PhoneNumber)
-                .Matches(@"^[+]?[0-9\s\-\(\)]+$").WithMessage("Geçerli bir telefon numarası giriniz")
-                .MaximumLength(20).WithMessage("Telefon numarası en fazla 20 karakter olabilir")
-                .MinimumLength(10).WithMessage("Telefon numarası en az 10 karakter olmalıdır")
-                .When(x => !string.IsNullOrEmpty(x.PhoneNumber));
         }
     }
 } 

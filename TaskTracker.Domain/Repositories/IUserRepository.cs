@@ -12,6 +12,5 @@ namespace TaskTracker.Domain.Repositories
         Task<User> CreateAsync(User user, CancellationToken cancellationToken = default);
         Task UpdateAsync(User user, CancellationToken cancellationToken = default);
         Task DeleteAsync(int id, CancellationToken cancellationToken = default);
-        Task UpdateLastLoginAsync(int userId, CancellationToken cancellationToken = default);
     }
 } 

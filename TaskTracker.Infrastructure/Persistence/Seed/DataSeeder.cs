@@ -18,8 +18,6 @@ namespace TaskTracker.Infrastructure.Persistence.Seed
                     {
                         Username = "admin",
                         Email = "admin@tasktracker.com",
-                        FirstName = "Admin",
-                        LastName = "User",
                         CreatedAt = DateTime.UtcNow
                     }, "Admin123!"),
                 };

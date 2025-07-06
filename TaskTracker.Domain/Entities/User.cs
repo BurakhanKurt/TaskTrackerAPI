@@ -26,30 +26,5 @@ namespace TaskTracker.Domain.Entities
         /// Şifre salt'ı
         /// </summary>
         public string PasswordSalt { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Ad
-        /// </summary>
-        public string? FirstName { get; set; }
-
-        /// <summary>
-        /// Soyad
-        /// </summary>
-        public string? LastName { get; set; }
-
-        /// <summary>
-        /// Telefon numarası
-        /// </summary>
-        public string? PhoneNumber { get; set; }
-
-        /// <summary>
-        /// Son giriş tarihi
-        /// </summary>
-        public DateTime? LastLoginAt { get; set; }
-
-        /// <summary>
-        /// Tam ad (computed property)
-        /// </summary>
-        public string? FullName => $"{FirstName} {LastName}".Trim();
     }
 } 
