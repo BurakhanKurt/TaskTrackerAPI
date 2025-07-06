@@ -24,7 +24,7 @@ namespace TaskTracker.Application.Services.Auth.Validators
                 .NotEmpty().WithMessage("Şifre zorunludur")
                 .MinimumLength(8).WithMessage("Şifre en az 8 karakter olmalıdır")
                 .MaximumLength(100).WithMessage("Şifre en fazla 100 karakter olabilir")
-                .Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]").WithMessage("Şifre en az bir büyük harf, bir küçük harf, bir rakam ve bir özel karakter içermelidir");
+                .Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&._-])[A-Za-z\d@$!%*?&._-]+").WithMessage("Şifre en az bir büyük harf, bir küçük harf, bir rakam ve bir özel karakter içermelidir");
 
             RuleFor(x => x.FirstName)
                 .MaximumLength(50).WithMessage("Ad en fazla 50 karakter olabilir")
